@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 canvas.width = 400
-canvas.height = 800
+canvas.height = 720
 ctx.fillStyle = 'black'
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 ctx.fillStyle = 'white'
@@ -32,8 +32,6 @@ const defineMatrix = () => {
         pieces.push(randPiece[Math.trunc(Math.random() * 7)])
     }
     matrixTetris = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -153,8 +151,8 @@ const drawCubes = (x, y, color) => {
 
 const drawMatrix = () => {
     ctx.fillStyle = 'black'
-    ctx.fillRect(0, 0, 400, 800)
-    for (let y = 0; y < 20; y++) {
+    ctx.fillRect(0, 0, 400, 720)
+    for (let y = 0; y < 18; y++) {
         for (let x = 0; x < 10; x++) {
             if (matrixTetris[y][x] != 0) {
                 drawCubes(x * 40, y * 40, colorRgb[matrixTetris[y][x]])
@@ -192,7 +190,7 @@ const chekColision = () => {
     for (let i = 0; i < 7; i = i + 2) {
         let x = coordX + (tetriminos[pieces[piecesOrder]][spinPieces][i])
         let y = coordY + (tetriminos[pieces[piecesOrder]][spinPieces][i + 1])
-        if (y > 19) return true
+        if (y > 17) return true
         if (matrixTetris[y][x] !== 0 || x > 9 || x < 0) return true
     } return false
 }
@@ -201,7 +199,7 @@ const chekColisionFloor = () => {
     for (let i = 0; i < 7; i = i + 2) {
         let x = coordX + (tetriminos[pieces[piecesOrder]][spinPieces][i])
         let y = coordY + (tetriminos[pieces[piecesOrder]][spinPieces][i + 1])
-        if (y >= 19) {
+        if (y >= 17) {
             mergeTetrominoMatrix()
             checkLine()
             spinPieces = 0
@@ -224,7 +222,7 @@ const chekColisionFloor = () => {
 }
 
 const checkLine = () => {
-    for (let y = 0; y < 20; y++) {
+    for (let y = 0; y < 18; y++) {
         if (!matrixTetris[y].includes(0)) {
             score += 100
             impactLine.play()
