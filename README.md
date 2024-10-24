@@ -17,6 +17,8 @@ Flecha abajo: hacer que la pieza caiga más rápido ⬇️.
 La música fue creada con inteligencia artificial 🤖 y los efectos de sonido son de bancos gratuitos. Les confieso que fue un reto 🧠, me tomó varios días porque tuve que estudiar bien la mecánica de las piezas, los giros y los colores. Pero el esfuerzo valió la pena, ¡te recomiendo que lo pruebes! Funciona de maravilla 🚀.
 
 Aquí te dejo el link para jugarlo. ¡Que lo disfrutes! 😄
+
+[Tetris Game](https://tetris-javascript-2024.netlify.app/)
 ---
 ---
 English version:
@@ -37,4 +39,6 @@ Down arrow: make the piece fall faster ⬇️.
 The music was created using artificial intelligence 🤖 and the sound effects come from free sound libraries. Not gonna lie, it was a challenge 🧠, it took me a few days because I had to study how the pieces move, rotate, and the color mechanics. But the effort was totally worth it, I highly recommend you try it out! It runs like a charm 🚀.
 
 Here’s the link to play. Enjoy! 😄
+
+[Tetris Game](https://tetris-javascript-2024.netlify.app/)
 
