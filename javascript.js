@@ -1,15 +1,15 @@
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
-canvas.width = 400
-canvas.height = 720
+canvas.width = 300
+canvas.height = 540
 ctx.fillStyle = 'black'
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 ctx.fillStyle = 'white'
-ctx.font = '25pt Arial'
-ctx.fillText('Press "ENTER" to play', 36, 300)
-ctx.fillText('Rotate \u2191', 140, 360)
-ctx.fillText('Acelerate\u2193', 120, 420)
-ctx.fillText('\u2190left   right\u2192', 100, 480)
+ctx.font = '18pt Arial'
+ctx.fillText('Press "ENTER" to play', 32, 300)
+ctx.fillText('Rotate \u2191', 120, 360)
+ctx.fillText('Acelerate\u2193', 100, 420)
+ctx.fillText('\u2190left   right\u2192', 80, 480)
 
 const scorePrint = document.getElementById('score')
 const levelPrint = document.getElementById('level')
@@ -146,16 +146,16 @@ const startGame = () => {
 
 const drawCubes = (x, y, color) => {
     ctx.fillStyle = color
-    ctx.fillRect(x + 1, y + 1, 38, 38)
+    ctx.fillRect(x + 1, y + 1, 28, 28)
 }
 
 const drawMatrix = () => {
     ctx.fillStyle = 'black'
-    ctx.fillRect(0, 0, 400, 720)
+    ctx.fillRect(0, 0, 300, 540)
     for (let y = 0; y < 18; y++) {
         for (let x = 0; x < 10; x++) {
             if (matrixTetris[y][x] != 0) {
-                drawCubes(x * 40, y * 40, colorRgb[matrixTetris[y][x]])
+                drawCubes(x * 30, y * 30, colorRgb[matrixTetris[y][x]])
             }
         }
     }
@@ -166,7 +166,7 @@ const drawTetromino = () => {
         let x = coordX + (tetriminos[pieces[piecesOrder]][spinPieces][i])
         let y = coordY + (tetriminos[pieces[piecesOrder]][spinPieces][i + 1])
         let color = colorRgb[tetriminos[pieces[piecesOrder]].color]
-        drawCubes(x * 40, y * 40, color)
+        drawCubes(x * 30, y * 30, color)
     }
 }
 
@@ -271,12 +271,12 @@ const keyGame = () => {
 const levelPassLabel = () => {
     musicGame.pause()
     ctx.fillStyle = 'rgb(142,32,59)'
-    ctx.fillRect(40, 390, 320, 120)
+    ctx.fillRect(10, 190, 280, 120)
     ctx.fillStyle = 'rgb(200,71,91)'
-    ctx.fillRect(50, 400, 300, 100)
+    ctx.fillRect(20, 200, 260, 100)
     ctx.fillStyle = 'white'
     ctx.font = '40pt Arial'
-    ctx.fillText(`LEVEL ${level}`, 90, 470)
+    ctx.fillText(`LEVEL ${level}`, 50, 270)
     gameState = 'paused'
     gameStatePause = 0
 }
