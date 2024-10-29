@@ -122,7 +122,6 @@ let key = ''
 let gameState = 'stoped'
 let level = 1
 let gameStatePause = 0
-let lastTimestamp=0
 
 const startGame = () => {
     level = 1
@@ -302,7 +301,7 @@ const newLevel = (l, lv) => {
     levelPassLabel()
 }
 
-const runGame = (timestamp) => {
+const runGame = () => {
     time += 1
 
     if (gameState === 'paused' && gameStatePause === 0) {
@@ -323,11 +322,6 @@ const runGame = (timestamp) => {
         drawMatrix()
         drawTetromino()
         drawTetrominoPreview()
-        const deltatime=(timestamp-lastTimestamp)
-        lastTimestamp=timestamp
-        ctx.fillStyle = 'white'
-        ctx.font = '40pt Arial'
-        ctx.fillText(deltatime, 50, 400)
         checkLevel()
         if (time >= levelVelocity || key === 'ArrowDown') {
             endGame += 1
