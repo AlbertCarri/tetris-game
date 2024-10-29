@@ -122,6 +122,7 @@ let key = ''
 let gameState = 'stoped'
 let level = 1
 let gameStatePause = 0
+let lastTimestamp=0
 
 const startGame = () => {
     level = 1
@@ -301,7 +302,7 @@ const newLevel = (l, lv) => {
     levelPassLabel()
 }
 
-const runGame = () => {
+const runGame = (timestamp) => {
     time += 1
 
     if (gameState === 'paused' && gameStatePause === 0) {
@@ -322,6 +323,11 @@ const runGame = () => {
         drawMatrix()
         drawTetromino()
         drawTetrominoPreview()
+        const deltatime=(timestamp-lastTimestamp)
+        lastTimestamp=timestamp
+        ctx.fillStyle = 'white'
+        ctx.font = '40pt Arial'
+        ctx.fillText(deltatime, 50, 400)
         checkLevel()
         if (time >= levelVelocity || key === 'ArrowDown') {
             endGame += 1
@@ -332,10 +338,10 @@ const runGame = () => {
             coordY += 1
             if (chekGame && back === 0) {
                 ctx.fillStyle = 'white'
-                ctx.font = '40pt Arial'
-                ctx.fillText(`GAME OVER`, 50, 400)
+                ctx.font = '32pt Arial'
+                ctx.fillText(`GAME OVER`, 28, 400)
                 ctx.fillStyle = 'black'
-                ctx.strokeText(`GAME OVER`, 50, 400)
+                ctx.strokeText(`GAME OVER`, 28, 400)
                 gameState = 'stoped'
                 gameOver.play()
                 musicGame.pause()
