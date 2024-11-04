@@ -242,6 +242,9 @@ musicGame.addEventListener('ended', () => {
 document.addEventListener('keydown', (keyb) => {
     key = keyb.key
     if (keyb.key === 'Enter' && gameState === 'stoped') startGame()
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)) {
+        keyb.preventDefault()
+    }
 })
 
 const keyGame = () => {
