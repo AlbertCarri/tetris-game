@@ -3,7 +3,7 @@
     padding: 0;
     color: rgb(226, 226, 226);
     font-family: sans-serif;
-    background: black;
+    overscroll-behavior: none;
 }
 
 .game-console {
@@ -16,53 +16,211 @@
 }
 
 .preview {
-    margin-top: 50px;
     align-content: center;
     text-align: center;
-    width: 300px;
-    height: 300px;
     background: black;
-    font-size: 40px;
-    border-radius: 40px;
-    border: 10px solid rgb(110, 7, 105);
-}
-
-#next img {
-    margin-top: 20px;
-    margin-left: 20px;
-    width: 100px;
-    height: 100px;
 }
 
 .container {
     align-items: center;
-    margin-top: 10px;
 }
 
 .score {
     align-content: center;
     text-align: center;
-    width: 300px;
-    height: 300px;
     background: black;
-    font-size: 40px;
-    border-radius: 40px;
-    border: 10px solid rgb(25, 111, 161);
 }
 
 canvas {
-    border: 8px solid rgb(212, 126, 14);
+    border: 4px solid rgb(212, 126, 14);
 }
 
-.footer {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 80px;
+@media (min-width: 768px) {
+
+    .title {
+        display: block;
+        font-size: 24px;
+    }
+
+    .preview {
+        position: relative;
+        font-size: 40px;
+        margin-top: 8px;
+        width: 300px;
+        height: 300px;
+        border-radius: 40px;
+        border: 10px solid rgb(110, 7, 105);
+    }
+
+    .container {
+        width: auto;
+        margin-top: 10px;
+    }
+
+    canvas {
+        margin-top: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    #next img {
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .score {
+        position: relative;
+        align-items: center;
+        margin-top: 10px;
+        width: 300px;
+        height: 300px;
+        font-size: 40px;
+        border-radius: 40px;
+        border: 10px solid rgb(25, 111, 161);
+    }
+
+    .startb {
+        position: absolute;
+        top: 400px;
+    }
+
+    #start {
+        top: 0px;
+        all: unset;
+        background: rgb(148, 3, 71);
+        padding: 16px 24px 16px 24px;
+        border-radius: 20px;
+        font-size: 48px;
+        cursor: pointer;
+    }
+
+    #buttons {
+        display: none;
+    }
+
+    .footer {
+        display: block;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        background: black;
+        justify-content: space-around;
+        align-items: center;
+        height: 80px;
+    }
 }
 
-.title {
-    font-size: 24px;
+@media (max-width: 768px) {
+    .preview {
+        position: absolute;
+        font-size: 16px;
+        top: 8px;
+        left: 8px;
+        width: 120px;
+        height: 80px;
+        border-radius: 10px;
+        border: 4px solid rgb(110, 7, 105);
+    }
+
+    .container {
+        width: 75%;
+        margin-top: -0px;
+    }
+
+    canvas {
+        margin-top: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    #next img {
+        margin-top: 10px;
+        margin-left: 4px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .score {
+        position: absolute;
+        align-items: center;
+        top: 8px;
+        right: 8px;
+        width: 120px;
+        height: 80px;
+        font-size: 12px;
+        border-radius: 10px;
+        border: 4px solid rgb(25, 111, 161);
+
+    }
+
+    #buttons {
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .startb {
+        position: absolute;
+        top: 180px;
+    }
+
+    #start {
+        top: 0px;
+        all: unset;
+        background: burlywood;
+        padding: 8px 12px 8px 12px;
+        border-radius: 10px;
+        font-size: 36px;
+    }
+
+    #left {
+        all: unset;
+        width: 32px;
+        background: rgb(3, 102, 77);
+        padding: 8px;
+        border-radius: 100%;
+        font-size: 24px;
+    }
+
+    #rotate {
+        all: unset;
+        background: rgb(241, 148, 7);
+        padding: 32px;
+        border-radius: 100%;
+        font-size: 24px;
+    }
+
+    #right {
+        all: unset;
+        width: 32px;
+        background: rgb(99, 4, 91);
+        padding: 8px;
+        border-radius: 100%;
+        font-size: 24px;
+    }
+
+    .footer {
+        position: absolute;
+        background-color: transparent;
+        color: aquamarine;
+        top: 250px;
+        left: -100px;
+        rotate: z 270deg;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 20px;
+    }
+
+    .title {
+        display: none;
+        font-size: 24px;
+    }
 }

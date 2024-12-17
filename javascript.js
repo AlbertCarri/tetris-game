@@ -6,10 +6,17 @@ ctx.fillStyle = 'black'
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 ctx.fillStyle = 'white'
 ctx.font = '18pt Arial'
-ctx.fillText('Press "ENTER" to play', 32, 300)
 ctx.fillText('Rotate \u2191', 120, 360)
 ctx.fillText('Acelerate\u2193', 100, 420)
 ctx.fillText('\u2190left   right\u2192', 80, 480)
+console.log(window.innerWidth)
+document.querySelector('.game-console').style.width = `${window.innerWidth}px`
+document.querySelector('.game-console').style.height = `${window.innerHeight}px`
+
+const buttons = document.getElementById('buttons')
+const start = document.getElementById('start')
+let touchX = 0
+let touchY = 0
 
 const scorePrint = document.getElementById('score')
 const levelPrint = document.getElementById('level')
@@ -138,6 +145,7 @@ const startGame = () => {
     endGame = 0
     key = ''
     gameState = 'play'
+    start.style.display = 'none'
     defineMatrix()
     musicGame.currentTime = 0
     musicGame.play()
@@ -171,7 +179,7 @@ const drawTetromino = () => {
 }
 
 const drawTetrominoPreview = () => {
-    preview.innerHTML = `<img src="/public/${pieces[piecesOrder + 1]}.jpg" alt="tetrimino"></img>`
+    preview.innerHTML = `<img src="/public/${pieces[piecesOrder + 1]}.jpg" alt="tetrimino"></img>` + touchX
 }
 
 const mergeTetrominoMatrix = () => {
@@ -239,6 +247,41 @@ musicGame.addEventListener('ended', () => {
     musicGame.play()
 })
 
+window.addEventListener('click', (event) => {
+    event.preventDefault()
+    key='ArrowUp'
+})
+
+/*buttons.addEventListener('click', (event) => {
+    const touch = event.target
+    if (touch.tagName === 'BUTTON') {
+        switch (touch.id) {
+            case 'rotate':
+                key = 'ArrowUp'
+                break
+        }
+    }
+})*/
+
+start.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (gameState === 'stoped') {
+        start.style.display = 'hidden'
+        startGame()
+    }
+})
+
+document.addEventListener('touchmove', (e) => {
+    e.preventDefault()
+
+    const touch = e.touches[0]
+    if (touchX > Math.floor(touch.clientX / 20)) key = 'ArrowLeft'
+    if (touchX < Math.floor(touch.clientX / 20)) key = 'ArrowRight'
+    touchX = Math.floor(touch.clientX / 20)
+
+    console.log('touchX::', touchX)
+})
+
 document.addEventListener('keydown', (keyb) => {
     key = keyb.key
     if (keyb.key === 'Enter' && gameState === 'stoped') startGame()
@@ -269,6 +312,7 @@ const keyGame = () => {
         if (test) coordX -= 1
         key = ''
     }
+
 }
 
 const levelPassLabel = () => {
@@ -339,6 +383,7 @@ const runGame = () => {
                 ctx.fillText(`GAME OVER`, 28, 400)
                 ctx.fillStyle = 'black'
                 ctx.strokeText(`GAME OVER`, 28, 400)
+                start.style.display = 'block'
                 gameState = 'stoped'
                 gameOver.play()
                 musicGame.pause()
