@@ -179,7 +179,7 @@ const drawTetromino = () => {
 }
 
 const drawTetrominoPreview = () => {
-    preview.innerHTML = `<img src="/public/${pieces[piecesOrder + 1]}.jpg" alt="tetrimino"></img>` + touchX
+    preview.innerHTML = `<img src="/public/${pieces[piecesOrder + 1]}.jpg" alt="tetrimino"></img>`
 }
 
 const mergeTetrominoMatrix = () => {
@@ -252,17 +252,6 @@ window.addEventListener('click', (event) => {
     key='ArrowUp'
 })
 
-/*buttons.addEventListener('click', (event) => {
-    const touch = event.target
-    if (touch.tagName === 'BUTTON') {
-        switch (touch.id) {
-            case 'rotate':
-                key = 'ArrowUp'
-                break
-        }
-    }
-})*/
-
 start.addEventListener('click', (e) => {
     e.preventDefault()
     if (gameState === 'stoped') {
@@ -275,9 +264,9 @@ document.addEventListener('touchmove', (e) => {
     e.preventDefault()
 
     const touch = e.touches[0]
-    if (touchX > Math.floor(touch.clientX / 20)) key = 'ArrowLeft'
-    if (touchX < Math.floor(touch.clientX / 20)) key = 'ArrowRight'
-    touchX = Math.floor(touch.clientX / 20)
+    if (touchX > Math.floor(touch.clientX / 30)) key = 'ArrowLeft'
+    if (touchX < Math.floor(touch.clientX / 30)) key = 'ArrowRight'
+    touchX = Math.floor(touch.clientX / 30)
 
     console.log('touchX::', touchX)
 })
