@@ -127,7 +127,7 @@ let pieces = []
 let piecesOrder = 0
 let score = 0
 let spinPieces = 0
-let levelVelocity = 15
+let levelVelocity = 20
 let coordX = 5
 let coordY = 0
 let time = 0
@@ -145,7 +145,7 @@ const startGame = () => {
     scorePrint.innerHTML = score.toString().padStart(6, '0')
     levelPrint.innerHTML = level
     spinPieces = 0
-    levelVelocity = 15
+    levelVelocity = 20
     coordX = 5
     coordY = 0
     time = 0
@@ -267,9 +267,15 @@ start.addEventListener('click', (e) => {
     }
 })
 
+let touchStartX = 0
+
+document.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0]
+    touchStartX = touch.clientX  
+});
+
 document.addEventListener('touchmove', (e) => {
     e.preventDefault()
-
     const touch = e.touches[0]
     if (touchY < Math.floor(touch.clientY / 30)) {
         key = 'ArrowDown'
@@ -277,12 +283,11 @@ document.addEventListener('touchmove', (e) => {
         return
     }
     touchY = Math.floor(touch.clientY / 30)
-    if (touchX > Math.floor(touch.clientX / 30)) key = 'ArrowLeft'
-    if (touchX < Math.floor(touch.clientX / 30)) key = 'ArrowRight'
-    touchX = Math.floor(touch.clientX / 30)
-
-
-    console.log('touchX::', touchX)
+    if (Math.abs(touchStartX - touch.clientX) > 40) {
+        if (touchX > Math.round(touch.clientX / 30)) key = 'ArrowLeft'
+        if (touchX < Math.round(touch.clientX / 30)) key = 'ArrowRight'
+    }
+    touchX = Math.round(touch.clientX / 30)
 })
 
 document.addEventListener('keydown', (keyb) => {
@@ -336,7 +341,7 @@ const checkLevel = () => {
     if (level === 4 && score >= 7000) newLevel(5, 8)
     if (level === 3 && score >= 6000) newLevel(4, 8)
     if (level === 2 && score >= 4000) newLevel(3, 10)
-    if (level === 1 && score >= 2000) newLevel(2, 12)
+    if (level === 1 && score >= 2000) newLevel(2, 15)
 }
 
 const newLevel = (l, lv) => {
