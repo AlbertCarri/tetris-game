@@ -6,9 +6,16 @@ ctx.fillStyle = 'black'
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 ctx.fillStyle = 'white'
 ctx.font = '18pt Arial'
-ctx.fillText('Rotate \u2191', 120, 360)
-ctx.fillText('Acelerate\u2193', 100, 420)
-ctx.fillText('\u2190left   right\u2192', 80, 480)
+if (window.innerWidth >= 768) {
+    ctx.fillText('Rotate \u2191', 120, 360)
+    ctx.fillText('Acelerate\u2193', 100, 420)
+    ctx.fillText('\u2190left   right\u2192', 80, 480)
+} else {
+    ctx.fillText('Rotate 👇', 120, 360)
+    ctx.fillText('Acelerate👎', 100, 420)
+    ctx.fillText('👈left   right👉', 80, 480)
+
+}
 console.log(window.innerWidth)
 document.querySelector('.game-console').style.width = `${window.innerWidth}px`
 document.querySelector('.game-console').style.height = `${window.innerHeight}px`
@@ -249,7 +256,7 @@ musicGame.addEventListener('ended', () => {
 
 window.addEventListener('click', (event) => {
     event.preventDefault()
-    key='ArrowUp'
+    key = 'ArrowUp'
 })
 
 start.addEventListener('click', (e) => {
@@ -264,9 +271,16 @@ document.addEventListener('touchmove', (e) => {
     e.preventDefault()
 
     const touch = e.touches[0]
+    if (touchY < Math.floor(touch.clientY / 30)) {
+        key = 'ArrowDown'
+        touchY = Math.floor(touch.clientY / 30)
+        return
+    }
+    touchY = Math.floor(touch.clientY / 30)
     if (touchX > Math.floor(touch.clientX / 30)) key = 'ArrowLeft'
     if (touchX < Math.floor(touch.clientX / 30)) key = 'ArrowRight'
     touchX = Math.floor(touch.clientX / 30)
+
 
     console.log('touchX::', touchX)
 })
